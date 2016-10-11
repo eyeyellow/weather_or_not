@@ -6,6 +6,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 # Configure rspec-rails
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
 end
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
