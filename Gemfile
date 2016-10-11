@@ -3,6 +3,11 @@ source 'https://rubygems.org'
 # Hides environmental variables
 gem 'dotenv-rails', :groups => [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# Sets up factory_girl for creating fixtures for testing
+group :development, :test do
+  gem 'factory_girl_rails'
+end
+
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
