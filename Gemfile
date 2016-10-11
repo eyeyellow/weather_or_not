@@ -5,6 +5,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # Sets up factory_girl for creating fixtures for testing
 group :development, :test do
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
 
