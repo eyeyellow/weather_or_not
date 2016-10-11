@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+
+# Sample test to see that rspec works
 describe User do
   let(:user) { User.create(first_name: "Jane",
                             last_name: "Doe",
