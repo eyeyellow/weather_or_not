@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Hides environmental variables
 gem 'dotenv-rails', :groups => [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+<<<<<<< HEAD
 # Configure rspec-rails
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
