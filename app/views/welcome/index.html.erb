@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Welcome to Weather or Not</h1>
+
+  <h2>What would you like to do?</h2>
+  <% if @logged_in %>
+
+  <form method="POST" action="/sessions">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Logout" class="button">
+  </form>
+
+  <form method="GET" action="/entries">
+    <button class="button" type="submit">View Entries</button>
+  </form>
+
+  <% else %>
+
+    <%= form_for :user, url: new_user_path do |f| %>
+      <%= f.submit "Sign Up" %>
+    <% end %>
+
+    <%= form_for :session, url: new_session_path do |f| %>
+      <%= f.submit "Login" %>
+    <% end %>
+
+  <% end %>
+
+</div>
