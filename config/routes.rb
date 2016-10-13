@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  resources :entries, :entry_types, :users, :sessions
+  resources :entry_types
+  resources :users
+  resources :sessions
+
   resources :entries do
     resources :reminders
   end

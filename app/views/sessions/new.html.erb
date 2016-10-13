@@ -1,0 +1,11 @@
+<div class="container">
+  <%= form_for :user, url: sessions_path, :html => { :method => 'POST' } do |f| %>
+    <%= f.label "Email" %><br>
+    <%= f.text_field :email %><br>
+    <%= f.label "Password" %><br>
+    <%= f.password_field :password %><br>
+    <%= f.label "Confirm Password" %><br>
+    <%= f.password_field :confirm_password %><br>
+    <%= f.submit "Login" %>
+  <% end %>
+</div>
