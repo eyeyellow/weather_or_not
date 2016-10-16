@@ -2,6 +2,10 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def show
+    p params
+  end
+
   def create
     p "*" * 20
     p params
@@ -16,7 +20,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         p "successful login"
         p "session[:user_id] is #{session[:user_id]}"
-        redirect '/entries'
+        redirect_to @user
       else
         redirect '/'
         p "no password match"
