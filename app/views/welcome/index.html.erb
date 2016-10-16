@@ -2,12 +2,12 @@
   <h1>Welcome to Weather or Not</h1>
 
   <h2>What would you like to do?</h2>
-  <% if @logged_in %>
+  <% if @current_user %>
 
-  <form method="POST" action="/sessions">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Logout" class="button">
-  </form>
+  <%= form_for(:session, url: session_path(session), :method => :delete) do |f| %>
+    <%= f.submit :value => "Logout" %>
+  <% end %>
+
 
   <form method="GET" action="/entries">
     <button class="button" type="submit">View Entries</button>
