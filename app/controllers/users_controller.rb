@@ -3,21 +3,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    p "*" * 20
-    p params
-    p "*" * 20
     if params[:user][:password] == params[:user][:confirm_password]
-      p "password confirmed"
       @user = User.new(user_params)
       if @user.save
         session[:user_id] = @user.id
-        p "user creation successful"
         redirect_to @user
       else
-        p "user creation was unsuccessful"
+        @error = "User creation was unsuccessful"
+        render new_user_path
       end
     else
-      redirect_to root_url
+      @error = "Password does not match"
+      render new_user_path
     end
   end
 
