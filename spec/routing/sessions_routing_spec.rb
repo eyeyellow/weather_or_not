@@ -6,4 +6,14 @@ RSpec.describe "Sessions routing ", :type => :routing do
       expect(:get => "/sessions/new").to route_to("sessions#new")
     end
   end
+  context "to create session" do
+    it "routes POST /sessions to sessions#create" do
+      expect(:post => "/sessions").to route_to("sessions#create")
+    end
+  end
+  context "to destroy session" do
+    it "routes DELETE /session to sessions#destroy" do
+      expect(:delete => "/sessions/1").to route_to("sessions#destroy", :id => "1")
+    end
+  end
 end
