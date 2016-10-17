@@ -12,7 +12,7 @@ RSpec.describe "Sessions routing ", :type => :routing do
     end
   end
   context "to destroy session" do
-    it "routes DELETE /session to sessions#destroy" do
+    it "routes DELETE /sessions/1 to sessions#destroy" do
       expect(:delete => "/sessions/1").to route_to("sessions#destroy", :id => "1")
     end
   end
