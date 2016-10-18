@@ -13,10 +13,10 @@ class EntriesController < ApplicationController
   def show
   end
 
-  def edit
+  def update
   end
 
-  def delete
+  def destroy
   end
 
 end

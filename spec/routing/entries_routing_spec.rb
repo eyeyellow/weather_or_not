@@ -16,7 +16,7 @@ RSpec.describe "Entries routes", :type => :routing do
       expect(:delete => "/entries/1").to route_to("entries#destroy", :id => "1")
     end
   end
-  context "to entries edit page" do
+  context "to entries update page" do
     it "routes GET /entries to page for viewing entries" do
       expect(:patch => "/entries/1").to route_to("entries#update", :id => "1")
     end
