@@ -4,4 +4,8 @@
   <%= form_for(:session, url: session_path(session), :method => :delete) do |f| %>
     <%= f.submit :value => "Logout" %>
   <% end %>
+
+  <%= form_for(:entry, url: entries_path, :method => 'GET') do |f| %>
+    <%= f.submit :value => "View Entries" %>
+  <% end %>
 </div>
