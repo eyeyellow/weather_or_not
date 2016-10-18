@@ -12,10 +12,10 @@
     <%= f.password_field :password %><br>
     <%= f.label "Confirm Password" %><br>
     <%= f.password_field :confirm_password %><br>
-    <%= f.submit "Login" %>
+    <%= f.submit "Sign Up" %>
   <% end %>
 
   <% if @error %>
-    <p><strong><%= @error %></strong></p>
+    <p class="error"><strong><%= @error %></strong></p>
   <% end %>
 </div>

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Welcome, <%= @user.first_name %></h1>
+  <h1 class="first_name">Welcome, <%= @user.first_name %></h1>
   <h2>What do you want to do?</h2>
   <%= form_for(:session, url: session_path(session), :method => :delete) do |f| %>
     <%= f.submit :value => "Logout" %>
