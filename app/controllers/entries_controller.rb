@@ -20,10 +20,6 @@ class EntriesController < ApplicationController
     @entry_types = @entry_types.map do |entry_type|
       [entry_type.name, entry_type.id]
     end
-    # entry_params[:user_id] = current_user.id
-    # p "*" * 20
-    # p entry_params
-    # p "*" * 20
     @entry = Entry.new(entry_params)
     @entry.user_id = current_user.id
       if @entry.save
@@ -36,6 +32,8 @@ class EntriesController < ApplicationController
   end
 
   def show
+    @entry = Entry.find_by_id(params[:id])
+    @entry_type = @entry.entry_type
   end
 
   def update
