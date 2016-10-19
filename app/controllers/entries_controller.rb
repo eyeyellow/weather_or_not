@@ -5,9 +5,15 @@ class EntriesController < ApplicationController
   end
 
   def new
+    @entry_types = EntryType.all
+    @entry_types = @entry_types.map do |entry_type|
+      [entry_type.name, entry_type.id]
+    end
+    @entry_types
   end
 
   def create
+    p params
   end
 
   def show

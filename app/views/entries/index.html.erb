@@ -14,13 +14,11 @@
 
       <tr class="entries-list">
         <td class="entry-date"><%= entry.date.to_date %></td>
-        <!-- <td class="entry-title"><a href='/entries/<%= entry.id %>'><%= entry.title %></a></td> -->
         <td class="entry-title"><%= link_to entry.title, entry_path(entry.id) %></td>
-        <!-- <td class="edit-entry"><a href='/entries/<%= entry.id %>/edit'>Edit</a></td> -->
         <td class="edit-entry"><%= link_to "Edit", edit_entry_path(entry.id) %></td>
-        <!-- <td class="delete-entry"><a href='/entries/<%= entry.id %>/delete'>Delete</a></td> -->
         <td class="delete-entry"><%= link_to "Delete", entry_path(entry.id), method: :delete %></td>
         <td>
+          <!-- remember to refactor reminder button with Rails helper methods -->
           <form id='reminder-button' method="POST" action="/reminders">
             <input type="hidden" name="reminder_freq" value="<%= entry.entry_type.reminder_freq %>">
             <input type="hidden" name="entry_date" value="<%= entry.created_at %>">
@@ -34,5 +32,9 @@
     </table>
   </div>
 </div>
+
+  <%= form_for :entry, url: new_entry_path, :html => { :method => 'GET' } do |f| %>
+    <%= f.submit "Create a new Entry" %>
+  <% end %>
 
 <!-- remember to include forecast_data at bottom of page -->
