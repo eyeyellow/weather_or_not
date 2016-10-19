@@ -13,6 +13,10 @@
     <%= f.submit "Create new entry" %>
   <% end %>
 
+  <% if @error %>
+    <p class="error"><strong><%= @error %></strong></p>
+  <% end %>
+
   <h3><a href='/entry_types/new'>Click here to create a new type of entry</a></h3>
   <a href='/'>Home</a>
 </div>

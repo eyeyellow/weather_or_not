@@ -15,7 +15,23 @@ class EntriesController < ApplicationController
   end
 
   def create
+    # Make some type of helper method for the controller
+    @entry_types = EntryType.all
+    @entry_types = @entry_types.map do |entry_type|
+      [entry_type.name, entry_type.id]
+    end
+    # entry_params[:user_id] = current_user.id
+    # p "*" * 20
+    # p entry_params
+    # p "*" * 20
     @entry = Entry.new(entry_params)
+    @entry.user_id = current_user.id
+      if @entry.save
+        redirect_to action: "index"
+      else
+        @error = "Entry creation was unsuccessful"
+        render new_entry_path
+      end
     p @entry
   end
 
