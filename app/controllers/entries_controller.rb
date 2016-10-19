@@ -1,3 +1,5 @@
+require 'date'
+
 class EntriesController < ApplicationController
 
   def index
@@ -13,7 +15,8 @@ class EntriesController < ApplicationController
   end
 
   def create
-    p params
+    @entry = Entry.new(entry_params)
+    p @entry
   end
 
   def show
@@ -26,6 +29,12 @@ class EntriesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def entry_params
+    params.require(:entry).permit(:title, :description, :entry_type_id, :date)
   end
 
 end
