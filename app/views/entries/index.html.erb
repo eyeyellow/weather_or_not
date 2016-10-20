@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>Welcome! Here are your gardening entries:</h2>
+  <div class="entries-container">
+    <table>
+      <tr class="entries-headers">
+        <th>Date</th>
+        <th>Entry</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Get Reminder</th>
+      </tr>
+      <% if @entries %>
+      <% @entries.each do |entry| %>
+
+      <tr class="entries-list">
+        <td class="entry-date"><%= entry.date.to_date %></td>
+        <td class="entry-title"><%= link_to entry.title, entry_path(entry.id) %></td>
+        <td class="edit-entry"><%= link_to "Edit", edit_entry_path(entry.id) %></td>
+        <td class="delete-entry"><%= link_to "Delete", entry_path(entry.id), method: :delete %></td>
+        <td>
+          <!-- remember to refactor reminder button with Rails helper methods -->
+          <form id='reminder-button' method="POST" action="/reminders">
+            <input type="hidden" name="reminder_freq" value="<%= entry.entry_type.reminder_freq %>">
+            <input type="hidden" name="entry_date" value="<%= entry.created_at %>">
+            <input type="hidden" name="entry_type_name" value="<%= entry.entry_type.name %>">
+            <input type="submit" value="Reminder" class="button">
+          </form>
+        </td>
+      <% end %>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+  <%= form_for :entry, url: new_entry_path, :html => { :method => 'GET' } do |f| %>
+    <%= f.submit "Create a new Entry" %>
+  <% end %>
+
+<!-- remember to include forecast_data at bottom of page -->

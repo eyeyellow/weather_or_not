@@ -2,6 +2,7 @@ require 'date'
 
 FactoryGirl.define do
   factory :entry do
+    id 1
     title "Watered garden"
     description "Watered the perennials and succulents"
     association :user
