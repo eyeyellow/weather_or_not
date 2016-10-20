@@ -4,8 +4,10 @@ RSpec.describe EntriesController, type: :controller do
 
   let(:current_user) { FactoryGirl.create(:user) }
   before { allow(controller).to receive(:current_user) { current_user } }
+  let!(:entry) { FactoryGirl.create(:entry) }
 
-  # let(:entry) { build(:entry) }
+  # Note: tests for Create, Update, and Delete are all 302
+  # because they are all redirects (URI changed temporarily)
 
   describe "GET entries/index" do
     it "returns http success" do
@@ -31,12 +33,12 @@ RSpec.describe EntriesController, type: :controller do
 
   describe "POST entries/create" do
     it "returns http success" do
-      post :create
-      expect(response).to have_http_status(:success)
-    end
-    it "renders the create entry template" do
-      post :create
-      expect(response).to render_template("create")
+
+      post :create, params: { entry: {title: entry.title,
+                              description: entry.description,
+                              entry_type_id: entry.entry_type_id,
+                              date: entry.date} }
+      expect(response).to have_http_status 302
     end
   end
 
@@ -53,23 +55,18 @@ RSpec.describe EntriesController, type: :controller do
 
   describe "PATCH entries/update/:id" do
     it "returns http success" do
-      patch :update, params: { id: 1 }
-      expect(response).to have_http_status(:success)
-    end
-    it "renders the update entry template" do
-      patch :update, params: { id: 1 }
-      expect(response).to render_template("update")
+      patch :update, params: { id: 1, entry: {title: entry.title,
+                              description: entry.description,
+                              entry_type_id: entry.entry_type_id,
+                              date: entry.date} }
+      expect(response).to have_http_status 302
     end
   end
 
   describe "DELETE entries/:id" do
     it "returns http success" do
       delete :destroy, params: { id: 1 }
-      expect(response).to have_http_status(:success)
-    end
-    it "renders the show entry template" do
-      delete :destroy, params: { id: 1 }
-      expect(response).to render_template("destroy")
+      expect(response).to have_http_status 302
     end
   end
 
