@@ -4,6 +4,7 @@ class EntriesController < ApplicationController
 
   def index
     @entries = Entry.where(user_id: current_user.id)
+    p @entries
   end
 
   def new
@@ -11,7 +12,6 @@ class EntriesController < ApplicationController
     @entry_types = @entry_types.map do |entry_type|
       [entry_type.name, entry_type.id]
     end
-    @entry_types
   end
 
   def create
@@ -36,10 +36,30 @@ class EntriesController < ApplicationController
     @entry_type = @entry.entry_type
   end
 
-  def update
+  def edit
+    # Break into another helper method
+    @entry_types = EntryType.all
+    @entry_types = @entry_types.map do |entry_type|
+      [entry_type.name, entry_type.id]
+    end
+    @entry = Entry.find_by_id(params[:id])
   end
 
-  def edit
+  def update
+    # Make some type of helper method for the controller
+    @entry_types = EntryType.all
+    @entry_types = @entry_types.map do |entry_type|
+      [entry_type.name, entry_type.id]
+    end
+    @entry = Entry.find_by_id(params[:id])
+    @entry.assign_attributes(entry_params)
+      if @entry.save
+        redirect_to action: "index"
+      else
+        @error = "Entry creation was unsuccessful"
+        render new_entry_path
+      end
+    p @entry
   end
 
   def destroy

@@ -1,2 +1,22 @@
 <div class="container">
+  <h1>Fill out the form below to create a new entry:</h1>
+
+
+  <%= form_for :entry, url: "/entries/#{@entry.id}", :html => { :method => 'PATCH' } do |f| %>
+    <%= f.label "Title:" %><br>
+    <%= f.text_field :title, value: @entry.title %><br>
+    <%= f.label "Description" %><br>
+    <%= f.text_area(:description, value: @entry.description, size: "50x10") %><br>
+    <%= f.select(:entry_type_id, options_for_select(@entry_types), {prompt: 'Select Type of Entry'}) %><br>
+    <%= f.label "Date" %><br>
+    <%= f.date_field :date, value: @entry.date %>
+    <%= f.submit "Create new entry" %>
+  <% end %>
+
+  <% if @error %>
+    <p class="error"><strong><%= @error %></strong></p>
+  <% end %>
+
+  <h3><a href='/entry_types/new'>Click here to create a new type of entry</a></h3>
+  <a href='/'>Home</a>
 </div>
