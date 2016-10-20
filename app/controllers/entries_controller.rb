@@ -12,6 +12,7 @@ class EntriesController < ApplicationController
     @entry_types = @entry_types.map do |entry_type|
       [entry_type.name, entry_type.id]
     end
+    @date_now = date_now
   end
 
   def create
@@ -28,7 +29,6 @@ class EntriesController < ApplicationController
         @error = "Entry creation was unsuccessful"
         render new_entry_path
       end
-    p @entry
   end
 
   def show
@@ -43,6 +43,7 @@ class EntriesController < ApplicationController
       [entry_type.name, entry_type.id]
     end
     @entry = Entry.find_by_id(params[:id])
+  @date_now = date_now
   end
 
   def update
@@ -53,13 +54,12 @@ class EntriesController < ApplicationController
     end
     @entry = Entry.find_by_id(params[:id])
     @entry.assign_attributes(entry_params)
-      if @entry.save
-        redirect_to action: "index"
-      else
-        @error = "Entry creation was unsuccessful"
-        render new_entry_path
-      end
-    p @entry
+    if @entry.save
+      redirect_to action: "index"
+    else
+      @error = "Entry creation was unsuccessful"
+      render new_entry_path
+    end
   end
 
   def destroy
@@ -69,6 +69,10 @@ class EntriesController < ApplicationController
 
   def entry_params
     params.require(:entry).permit(:title, :description, :entry_type_id, :date)
+  end
+
+  def date_now
+    Date.today
   end
 
 end
